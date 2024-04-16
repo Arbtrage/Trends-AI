@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { TypewriterEffect } from '@/components/ui/typewriter-effect'
 import OnboardModal from '../OnboardModal'
 
 const Greetings = () => {
@@ -9,7 +10,7 @@ const Greetings = () => {
 
     useEffect(() => {
         const storedName = localStorage.getItem("name");
-        if(storedName) {
+        if (storedName) {
             setName(storedName);
         } else {
             setShowModal(true);
@@ -20,12 +21,23 @@ const Greetings = () => {
         setShowModal(false);
     }
 
+    const words = [{
+        text: "Welcome",
+        className:"text-blue-500 text-xl md:text-4xl"
+    },
+    {
+        text: name,
+        className:"text-xl md:text-4xl"
+    }]
+
     return (
         <div>
             {showModal ? (
                 <OnboardModal name={name} setName={setName} closeModal={closeModal} />
             ) : (
-                `Hello, ${name}`
+                <div className=''>
+                    <TypewriterEffect words={words}/>
+                </div>
             )}
         </div>
     )

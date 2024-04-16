@@ -3,6 +3,14 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input } from "@nextui-org/react";
 
 const OnboardModal = ({ name, setName, closeModal }: any) => {
+
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        localStorage.setItem("name", name);
+        closeModal();
+    }
+
     return (
         <Modal backdrop="blur" isOpen={true} onClose={closeModal}>
             <ModalContent>
@@ -16,10 +24,11 @@ const OnboardModal = ({ name, setName, closeModal }: any) => {
                         label="Name"
                         placeholder="Enter your name..."
                         variant="bordered"
+                        onSubmit={handleSubmit}
                     />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onPress={closeModal} onClick={() => { localStorage.setItem("name", name); closeModal(); }}>
+                    <Button color="primary" onClick={handleSubmit}>
                         Save
                     </Button>
                 </ModalFooter>
