@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Default styles for desktop */
+.chart-text {
+    font-size: 14px;
+}
+
+/* Smaller text for tablets */
+@media (max-width: 768px) {
+    .chart-text {
+        font-size: 12px;
+    }
+}
+
+/* Even smaller text for mobile devices */
+@media (max-width: 480px) {
+    .chart-text {
+        font-size: 10px;
+    }
+}
