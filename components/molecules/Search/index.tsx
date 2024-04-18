@@ -5,6 +5,7 @@ import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { Search as SearchIcon } from 'lucide-react';
 import { mockSearchResults } from '@/constants/mocks';
 import { getTickers } from '@/lib/fetchers';
+import { searchResults } from '@/constants/mocks';
 
 type SearchResult = {
     description: string;
@@ -15,7 +16,7 @@ type SearchResult = {
 
 
 const Search = ({ setTicker }: any) => {
-    const [input, setInput] = useState<string>("AAPL");
+    const [input, setInput] = useState<string>("");
     const [results, setResults] = useState<SearchResult[]>(mockSearchResults.result.slice(0, 4));
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -42,7 +43,7 @@ const Search = ({ setTicker }: any) => {
     }, [input]);
 
     return (
-        <div>
+        <div className='w-full'>
             <Autocomplete
                 className="max-w-xs text-black"
                 value={input}
