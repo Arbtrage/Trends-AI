@@ -18,7 +18,7 @@ export default function GlobalError({
                             className="w-64 mx-auto"
                         />
                         <h1 className="text-4xl font-bold text-red-600 mt-5">Whoops!</h1>
-                        <p className="text-gray-700 mt-3">We've hit a snag with the API rate limits.</p>
+                        <p className="text-gray-700 mt-3">We&apos;ve hit a snag with the API rate limits.</p>
                         {error.digest && (
                             <p className="text-sm text-gray-500 mt-2">Error Code: {error.digest}</p>
                         )}
