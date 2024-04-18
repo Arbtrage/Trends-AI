@@ -2,13 +2,22 @@
 
 import { FaArrowUp, FaArrowDown, FaHeart, FaRegHeart, FaShareSquare } from 'react-icons/fa';
 import useSWR from 'swr';
+import { Card, Skeleton } from "@nextui-org/react";
 import { fetcher } from '@/lib/utils';
+import { formatLargeNumber } from '@/lib/utils';
 
 const Insights = ({ ticker }: { ticker: string }) => {
 
   const { data: res, isLoading, error } = useSWR(`/api/insights/${ticker}`, fetcher)
   if (error) return <p>Failed to load</p>
-  if (isLoading) return <>Loading .....</>
+  if (isLoading || !res)
+    return (
+      <>
+        <Skeleton className="rounded-lg">
+          <div className="h-full w-full rounded-lg bg-default-300"></div>
+        </Skeleton>
+      </>
+    );
 
   const data = res?.message;
   return (
@@ -21,25 +30,25 @@ const Insights = ({ ticker }: { ticker: string }) => {
             <p className="text-sm text-gray-400">{data?.currency}</p>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <div className="flex flex-col items-center">
-            <span className="font-bold md:text-lg text-sm">{data?.weekhigh}</span>
+            <span className="font-bold md:text-lg text-sm">${data?.weekhigh}</span>
             <span className="text-green-400 text-sm flex items-center"><FaArrowUp />52 Week High</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="font-bold md:text-lg text-sm">{data?.weeklow}</span>
+            <span className="font-bold md:text-lg text-sm">${data?.weeklow}</span>
             <span className="text-red-400 text-sm flex items-center"><FaArrowDown />52 Week low</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="font-bold md:text-lg text-sm">{data?.movingaverage}</span>
+            <span className="font-bold md:text-lg text-sm">${data?.movingaverage}</span>
             <span className="text-green-400 text-sm">Moving Average</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="font-bold md:text-lg text-sm">{data?.revenue}</span>
+            <span className="font-bold md:text-lg text-sm">{formatLargeNumber(data?.revenue)}</span>
             <span className="text-sm">Revenue</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="font-bold md:text-lg text-sm">{data?.profitMargin}</span>
+            <span className={`font-bold md:text-lg text-sm ${data?.profitMargin >= 0 ? 'text-green-400' : 'text-red-400'}`}>{data?.profitMargin}%</span>
             <span className="text-sm">ProfitMargin</span>
           </div>
         </div>

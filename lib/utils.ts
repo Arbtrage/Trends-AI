@@ -17,7 +17,44 @@ export const fetcher = async (...args: [RequestInfo, RequestInit?]): Promise<any
     const response = await fetch(...args);
     return response.json();
 };
-  
+
+export const calculateMovingAverage = (data:any, period:any) => {
+  if (data.length < period) {
+      console.log("Not enough data to calculate moving average");
+      return [];
+  }
+
+  let averages = [];
+  for (let i = period - 1; i < data.length; i++) {
+      let sum = 0;
+      for (let j = 0; j < period; j++) {
+          sum += data[i - j].close;
+      }
+      const avg = sum / period;
+      averages.push({ ...data[i], movingAverage: avg });
+  }
+  return averages;
+};
+
+export const formatLargeNumber=(number:any)=> {
+  // Convert the number to a string and get its length
+  let numStr = number.toString();
+  let suffix = '';
+  let formattedNumber = number;
+
+  if (numStr.length > 9) { // For billion
+    formattedNumber = (number / 1e9).toFixed(2);
+    suffix = 'B';
+  } else if (numStr.length > 6) { // For million
+    formattedNumber = (number / 1e6).toFixed(2);
+    suffix = 'M';
+  } else if (numStr.length > 3) { // For thousand
+    formattedNumber = (number / 1e3).toFixed(2);
+    suffix = 'K';
+  }
+
+  return `${formattedNumber}${suffix}`;
+}
 
 export const convertDateToUnixTimestamp = (date:any) => {
   return Math.floor(date.getTime() / 1000);
@@ -47,7 +84,7 @@ const subtractTime = (date:any, days:any, months:any, years:any) => {
 
 export const filterDataByTimeFrame = (data: any, timeFrame: any) => {
   if (!data) return null;
-  
+
   const now = new Date();
   let pastDate;
 
