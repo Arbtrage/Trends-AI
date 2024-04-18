@@ -2,22 +2,89 @@ import axios from "axios";
 import { baseUrl } from "@/constants/config";
 
 export const getTickers = async ({ ticker }: { ticker: string }) => {
+
+    const options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: {
+          keywords: ticker || 'Apple',
+          function: 'SYMBOL_SEARCH',
+          datatype: 'json'
+        },
+        headers: {
+            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY,
+            'X-RapidAPI-Host': process.env.NEXT_PUBLIC_RAPID_API_URL
+        }
+      };
     try {
-        const response = await axios.get(
-            `${baseUrl}/search?q=${ticker}&token=${process.env.NEXT_PUBLIC_KEY}`
-        );
+        const response = await axios.request(options);
+        if (response.status === 429) throw new Error("Api rate limit exceeded");
+        if(response.status!==200) throw new Error("Error")
         return { status: 200, message: response.data };
     } catch (error) {
         return { status: 500, message: "An unexpected error occurred" };
     }
 };
 
-export const getOverview = async ({ ticker }: { ticker: string }) => {
+
+export const getQuote=async({ ticker }: { ticker: string })=>{
+    const options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: {
+            function: 'GLOBAL_QUOTE',
+            symbol: ticker || "AAPL",
+            datatype: 'json'
+        },
+        headers: {
+            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY,
+            'X-RapidAPI-Host': process.env.NEXT_PUBLIC_RAPID_API_URL
+        }
+    };
     try {
-        const response = await axios.get(
-            `${baseUrl}/stock/profile2?symbol=${ticker}&token=${process.env.NEXT_PUBLIC_KEY}`
-        );
+        const response = await axios.request(options);
+        if(response.status===429) throw new Error("Api rate limit exceeded");
+        if (response.status !== 200) throw new Error("Error");
         return { status: 200, message: response.data };
+    } catch (error) {
+        return { status: 500, message: "An unexpected error occurred" };
+    }
+}
+
+export const getOverview = async ({ ticker }: { ticker: string }) => {
+
+    const options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: {
+            function: 'OVERVIEW',
+            symbol: ticker || 'AAPL'
+        },
+        headers: {
+            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY,
+            'X-RapidAPI-Host': process.env.NEXT_PUBLIC_RAPID_API_URL
+        }
+    };
+
+    try {
+        const response = await axios.request(options);
+        if (response.status === 429) throw new Error("Api rate limit exceeded");
+        if(response.status!==200) throw new Error("Error")
+        const data = {
+            symbol: response.data["Symbol"],
+            name: response.data["Name"],
+            description: response.data["Description"],
+            currency:  response.data["Currency"],
+            weekhigh:  response.data["52WeekHigh"],
+            weeklow:   response.data["52WeekLow"],
+            movingaverage: response.data["50DayMovingAverage"],
+            revenue: response.data["RevenueTTM"],
+            profitMargin: response.data["ProfitMargin"],
+            managementCompany: response.data["ManagementCompany"],
+            cagr: response.data["CAGR"],
+        }
+        console.log(data);
+        return { status: 200, message: data };
     } catch (error) {
         return { status: 500, message: "An unexpected error occurred" };
     }
@@ -29,12 +96,12 @@ export const getHistoricalData = async ({ stockSymbol }: any) => {
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: {
             function: 'TIME_SERIES_DAILY',
-            symbol: 'IBM',
+            symbol: stockSymbol || 'AAPL',
             outputsize: 'compact',
             datatype: 'json'
         },
         headers: {
-            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY,
+            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY2,
             'X-RapidAPI-Host': process.env.NEXT_PUBLIC_RAPID_API_URL
         }
     };

@@ -4,7 +4,6 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { formatCurrency } from '@/lib/utils';
 
 const StatsCard = ({ data }: any) => {
-    if (!data) return <p>Loading...</p>;
 
     const change = parseFloat(data["09. change"]);
     const changePercent = parseFloat(data["10. change percent"].replace('%', ''));

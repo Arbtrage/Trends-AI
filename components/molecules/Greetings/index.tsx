@@ -41,7 +41,7 @@ const Greetings = () => {
                 </div>
             )}
             <div>
-                <Search setTicker={""} />
+                <Search/>
             </div>
         </div>
     )

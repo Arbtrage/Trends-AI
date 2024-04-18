@@ -45,7 +45,9 @@ const subtractTime = (date:any, days:any, months:any, years:any) => {
   );
 };
 
-export const filterDataByTimeFrame = (data:any, timeFrame:any) => {
+export const filterDataByTimeFrame = (data: any, timeFrame: any) => {
+  if (!data) return null;
+  
   const now = new Date();
   let pastDate;
 
@@ -66,7 +68,7 @@ export const filterDataByTimeFrame = (data:any, timeFrame:any) => {
       pastDate = subtractTime(now, 7, 0, 0); // Default to 1 week
   }
 
-  return data.filter((item:any) => {
+  return data?.filter((item:any) => {
     const itemDate = new Date(item.date);
     return itemDate >= pastDate;
   });

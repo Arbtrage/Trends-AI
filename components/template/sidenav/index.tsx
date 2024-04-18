@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const NavItems = ({ item }: { item: string }) => {
     return (
-        <Link href={'/'} className='w-full p-2 pl-3 m-2 flex flex-col items-start hover:bg-slate-200 transition rounded-full'>
+        <Link href={'/'} className='w-full p-2 pl-5 mb-3 flex flex-col items-start text-bold hover:scale-105 transition  text-white '>
             {item}
         </Link>
     )
@@ -26,7 +26,7 @@ const links = [
 
 const SideNav = () => {
     return (
-        <div className='w-[15%] hidden p-10  bg-gray-800 md:flex md:flex-col items-center space-between rounded-r-lg'>
+        <div className='w-[15%] hidden  bg-gray-800 md:flex md:flex-col items-center space-between rounded-r-lg'>
             <Image
                 as={NextImage}
                 width={100}
