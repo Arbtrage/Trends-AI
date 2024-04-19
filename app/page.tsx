@@ -14,10 +14,10 @@ export async function generateMetadata() {
 }
 export default function Home() {
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full">
+    <main className="flex flex-col md:flex-row h-fit  w-full">
       <TopNav/>
       <SideNav />
       <Main />
-    </div>
+    </main>
   );
 }

@@ -26,7 +26,7 @@ const links = [
 
 const SideNav = () => {
     return (
-        <div className='w-[15%] hidden  bg-gray-800 md:flex md:flex-col items-center space-between rounded-r-lg'>
+        <div className='w-[15%] hidden min-h-screen  bg-gray-800 md:flex md:flex-col items-center space-between rounded-r-lg'>
             <Image
                 as={NextImage}
                 width={100}
