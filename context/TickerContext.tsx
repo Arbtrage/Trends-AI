@@ -4,8 +4,6 @@ import React, { createContext, useContext, useState } from 'react';
 
 const TickerContext = createContext({
     ticker: '',
-    ready: false,
-    setReady: (ready: boolean) => { },
     setTicker: (ticker: string) => { },
 });
 
@@ -17,10 +15,9 @@ export function TickerProvider({
     children: React.ReactNode;
 }>){
     const [ticker, setTicker] = useState('AAPL');
-    const [ready, setReady] = useState(false);
 
     return (
-        <TickerContext.Provider value={{ ticker, setTicker,ready,setReady }}>
+        <TickerContext.Provider value={{ ticker, setTicker }}>
             {children}
         </TickerContext.Provider>
     );

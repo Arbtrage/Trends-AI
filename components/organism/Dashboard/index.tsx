@@ -9,7 +9,7 @@ const Dashboard = () => {
     const { ticker } = useTicker();
 
     return (
-        <div className='min-h-screen flex gap-5 flex-col p-5 mt-2 bg-neutral-100 text-gray-700 rounded-lg' >
+        <div className='min-h-screen  flex gap-5 flex-col p-5 mt-2 bg-neutral-100 text-gray-700 rounded-lg' >
             <div className="flex justify-start items-center">
                 <Insights ticker={ticker} />
             </div>
