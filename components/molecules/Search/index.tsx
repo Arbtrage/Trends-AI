@@ -23,7 +23,7 @@ interface SearchResult {
 const Search = () => {
 
     // let { ticker}=useContext()
-    const { ticker, setTicker,setReady } = useTicker();
+    const { ticker, setTicker} = useTicker();
     const [input, setInput] = useState<string>(ticker);
     const [results, setResults] = useState<SearchResult[]>(searchResults.bestMatches);
     const [isLoading, setIsLoading] = useState<boolean>(false);

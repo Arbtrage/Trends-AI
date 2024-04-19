@@ -6,7 +6,7 @@ export const GET = async (
   { params }: { params: { ticker: string } }
 ) => {
     console.log("Data fetching time")
-    const issue = await getHistoricalData({ ticker:params.ticker });
+    const issue = await getHistoricalData({ stockSymbol:params.ticker });
 
   return NextResponse.json(issue);
 };
