@@ -118,6 +118,8 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshots
 
+![image](https://github.com/Arbtrage/testify.ai/assets/100552235/b50ad765-af52-42fb-a5ce-ffe1befe1797)
+
 ![image](https://github.com/Arbtrage/testify.ai/assets/100552235/4c03db3d-270d-45ee-b666-fbfb94ef7222)
 
 ![image](https://github.com/Arbtrage/testify.ai/assets/100552235/8f5fbd04-8560-45a6-8a57-759847d0a070)
