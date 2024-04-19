@@ -2,12 +2,13 @@ import axios from "axios";
 import { baseUrl } from "@/constants/config";
 
 export const getTickers = async ({ ticker }: { ticker: string }) => {
+    ticker = !ticker || ticker.length < 2 ? 'Apple' : ticker;
 
     const options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: {
-          keywords: ticker || 'Apple',
+          keywords: ticker,
           function: 'SYMBOL_SEARCH',
           datatype: 'json'
         },
@@ -27,13 +28,14 @@ export const getTickers = async ({ ticker }: { ticker: string }) => {
 };
 
 
-export const getQuote=async({ ticker }: { ticker: string })=>{
+export const getQuote = async ({ ticker }: { ticker: string }) => {
+    ticker = !ticker || ticker.length < 2  ? 'AAPL' : ticker;
     const options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: {
             function: 'GLOBAL_QUOTE',
-            symbol: ticker || "AAPL",
+            symbol: ticker,
             datatype: 'json'
         },
         headers: {
@@ -52,13 +54,13 @@ export const getQuote=async({ ticker }: { ticker: string })=>{
 }
 
 export const getOverview = async ({ ticker }: { ticker: string }) => {
-
+    ticker = !ticker || ticker.length < 2 ? 'AAPL' : ticker;
     const options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: {
             function: 'OVERVIEW',
-            symbol: ticker || 'AAPL'
+            symbol: ticker,
         },
         headers: {
             'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY,
@@ -91,12 +93,13 @@ export const getOverview = async ({ ticker }: { ticker: string }) => {
 };
 
 export const getHistoricalData = async ({ stockSymbol }: any) => {
+    stockSymbol = !stockSymbol || stockSymbol.length < 2 ? 'AAPL' : stockSymbol;
     const options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: {
             function: 'TIME_SERIES_DAILY',
-            symbol: stockSymbol || 'AAPL',
+            symbol: stockSymbol,
             outputsize: 'compact',
             datatype: 'json'
         },

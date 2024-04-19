@@ -38,6 +38,7 @@ export const calculateMovingAverage = (data:any, period:any) => {
 
 export const formatLargeNumber=(number:any)=> {
   // Convert the number to a string and get its length
+  if (!number) return null;
   let numStr = number.toString();
   let suffix = '';
   let formattedNumber = number;
@@ -83,7 +84,7 @@ const subtractTime = (date:any, days:any, months:any, years:any) => {
 };
 
 export const filterDataByTimeFrame = (data: any, timeFrame: any) => {
-  if (!data) return null;
+  if (!data || data.length===0) return null;
 
   const now = new Date();
   let pastDate;
