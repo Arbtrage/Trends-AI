@@ -4,7 +4,7 @@ import NextImage from "next/image";
 
 const TopNav = () => {
   return (
-    <div className='w-fit md:hidden block p-2'>
+    <div className='"w-full md:hidden block p-2'>
       <Image
         as={NextImage}
         width={50}
