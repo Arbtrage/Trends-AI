@@ -26,8 +26,6 @@ Trend is a Next.js application that provides a comprehensive suite of tools for 
   - `fetchers.ts`: Functions to fetch data from APIs.
   - `utils.ts`: Utility functions for common tasks.
 - `public/`: Static files like images and the app's favicon.
-- `node_modules/`: Dependencies installed by npm.
-- `.env`: Environment variable definitions (not to be committed to version control).
 - `.eslintrc.json`: ESLint configuration for code linting.
 - `next-env.d.ts`: TypeScript declaration file for Next.js types.
 - `next.config.mjs`: Next.js configuration file.
