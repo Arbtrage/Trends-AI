@@ -43,23 +43,19 @@ Trend is a Next.js application that provides a comprehensive suite of tools for 
 
 2. **Interactive Data Visualization**: With advanced charting tools, users can visualize stock performance over time through line, bar, and candlestick charts, as well as custom overlays like moving averages.
 
-3. **Customizable Dashboards**: Users can personalize their dashboards with widgets to track specific stocks, market indices, or sectors, providing a unique at-a-glance view of the metrics that matter most to them.
+3. **Insightful Analytics**: The app includes features for calculating key financial indicators such as profit margins, P/E ratios, and more, giving users a deeper understanding of a stock's valuation.
 
-4. **Insightful Analytics**: The app includes features for calculating key financial indicators such as profit margins, P/E ratios, and more, giving users a deeper understanding of a stock's valuation.
+4. **Performance-Driven Design**: The application utilizes server-side rendering for a fast initial load and smooth interactivity, coupled with client-side rendering for dynamic updates, ensuring an optimal balance between performance and real-time responsiveness.
 
-5. **Trend Detection Algorithms**: By leveraging machine learning, Trend can identify potential stock patterns and forecast market trends, aiding in predictive analysis.
+5. **Efficient Data Handling**: Trend implements smart caching strategies to minimize bandwidth usage and improve the speed of data retrieval, employing SWR (stale-while-revalidate) techniques for efficient data fetching and state management.
 
-6. **Performance-Driven Design**: The application utilizes server-side rendering for a fast initial load and smooth interactivity, coupled with client-side rendering for dynamic updates, ensuring an optimal balance between performance and real-time responsiveness.
+6. **Search Optimization**: With throttled search inputs, the application efficiently handles API requests, reducing unnecessary load and enhancing the user experience.
 
-7. **Efficient Data Handling**: Trend implements smart caching strategies to minimize bandwidth usage and improve the speed of data retrieval, employing SWR (stale-while-revalidate) techniques for efficient data fetching and state management.
+7. **Contextual State Management**: The use of React Context allows for state to be maintained across components without prop drilling, making for a clean and maintainable codebase.
 
-8. **Search Optimization**: With throttled search inputs, the application efficiently handles API requests, reducing unnecessary load and enhancing the user experience.
+8. **Responsive Layout**: Trend is built with a mobile-first approach, ensuring a seamless experience across all devices.
 
-9. **Contextual State Management**: The use of React Context allows for state to be maintained across components without prop drilling, making for a clean and maintainable codebase.
-
-10. **Responsive Layout**: Trend is built with a mobile-first approach, ensuring a seamless experience across all devices.
-
-11. **Environmentally Aware**: Environment variables are used to securely manage API keys and other sensitive information, keeping them out of the codebase and reducing the risk of exposure.
+9. **Environmentally Aware**: Environment variables are used to securely manage API keys and other sensitive information, keeping them out of the codebase and reducing the risk of exposure.
 
 ## Performance Boosting Logic
 
