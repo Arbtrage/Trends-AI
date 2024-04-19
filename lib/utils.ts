@@ -7,15 +7,15 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatCurrency = (amount: string): string => {
   return parseFloat(amount).toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    style: 'currency',
+    currency: 'USD',
   });
 };
 
 
 export const fetcher = async (...args: [RequestInfo, RequestInit?]): Promise<any> => {
-    const response = await fetch(...args);
-    return response.json();
+  const response = await fetch(...args);
+  return response.json();
 };
 
 export const calculateMovingAverage = (data:any, period:any) => {
@@ -36,8 +36,8 @@ export const calculateMovingAverage = (data:any, period:any) => {
   return averages;
 };
 
-export const formatLargeNumber=(number:any)=> {
-  // Convert the number to a string and get its length
+
+export const formatLargeNumber = (number: any): string | null => {
   if (!number) return null;
   let numStr = number.toString();
   let suffix = '';
@@ -56,17 +56,16 @@ export const formatLargeNumber=(number:any)=> {
 
   return `${formattedNumber}${suffix}`;
 }
-
-export const convertDateToUnixTimestamp = (date:any) => {
+export const convertDateToUnixTimestamp = (date: Date): number => {
   return Math.floor(date.getTime() / 1000);
 };
 
-export const convertUnixTimestampToDate = (unixTimestamp:any) => {
+export const convertUnixTimestampToDate = (unixTimestamp: number): string => {
   const milliseconds = unixTimestamp * 1000;
   return new Date(milliseconds).toLocaleDateString();
 };
 
-export const createDate = (date:any, days:any, weeks:any, months:any, years:any) => {
+export const createDate = (date: Date, days: number, weeks: number, months: number, years: number): Date => {
   let newDate = new Date(date);
   newDate.setDate(newDate.getDate() + days + 7 * weeks);
   newDate.setMonth(newDate.getMonth() + months);
@@ -74,8 +73,7 @@ export const createDate = (date:any, days:any, weeks:any, months:any, years:any)
   return newDate;
 };
 
-
-const subtractTime = (date:any, days:any, months:any, years:any) => {
+const subtractTime = (date: Date, days: number, months: number, years: number): Date => {
   return new Date(
     date.getFullYear() - years,
     date.getMonth() - months,
@@ -83,11 +81,11 @@ const subtractTime = (date:any, days:any, months:any, years:any) => {
   );
 };
 
-export const filterDataByTimeFrame = (data: any, timeFrame: any) => {
-  if (!data || data.length===0) return null;
+export const filterDataByTimeFrame = (data: { date: string }[], timeFrame: string): { date: string }[] | null => {
+  if (!data || data.length === 0) return null;
 
   const now = new Date();
-  let pastDate;
+  let pastDate: Date;
 
   switch (timeFrame) {
     case '1W':
@@ -106,7 +104,7 @@ export const filterDataByTimeFrame = (data: any, timeFrame: any) => {
       pastDate = subtractTime(now, 7, 0, 0); // Default to 1 week
   }
 
-  return data?.filter((item:any) => {
+  return data.filter((item) => {
     const itemDate = new Date(item.date);
     return itemDate >= pastDate;
   });

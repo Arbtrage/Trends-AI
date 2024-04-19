@@ -13,7 +13,7 @@ const Insights = ({ ticker }: { ticker: string }) => {
   if (isLoading || !res)
     return (
       <>
-        <Skeleton className="rounded-lg">
+        <Skeleton className="rounded-lg h-full w-full">
           <div className="h-full w-full rounded-lg bg-default-300"></div>
         </Skeleton>
       </>
